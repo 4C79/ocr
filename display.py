@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtWidgets
-import sys, os
+import sys, os, time
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPixmap
 import tkinter as tk
@@ -90,7 +90,7 @@ class Ui_MainWindow(object):
             self.label_1.setScaledContents(True)
             self.label_1.setPixmap(QPixmap(img_path))
 
-            res_path = self.save_dir + 'Intermediate\\\\res\\\\' + img_name.replace('.jpg','_result.jpg')
+            res_path = self.save_dir + 'Intermediate\\\\res\\\\' + img_name.replace('.jpg', '_result.jpg')
             print(res_path)
             self.label_2.setScaledContents(True)
             self.label_2.setPixmap(QPixmap(res_path))
@@ -120,7 +120,7 @@ class Ui_MainWindow(object):
             self.comboBox.addItem(str(content_list[i]))
 
     def task_2(self):
-
+        T1 = time.time()
         dir1 = 'det'
         file = os.listdir(dir1)
         for i in range(len(file)):
@@ -136,6 +136,8 @@ class Ui_MainWindow(object):
         for i in range(len(res_tmp)):
             self.res = self.res + str(res_tmp[i]) + '\n'
         self.textEdit.setText(self.res)
+        T2 = time.time()
+        print('程序运行时间:%s秒' % ((T2 - T1) ))
 
     def task_3(self):
         os.startfile(self.save_dir + 'Intermediate\pre')
